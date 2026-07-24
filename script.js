@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-        const triggerSurprise = () => {
-        // Play background music when surprise is triggered
+            const triggerSurprise = () => {
+        // Play your birthday background music
         const bgMusic = document.getElementById('bgMusic');
         if (bgMusic) {
             bgMusic.play().catch(e => {
-                console.log("Audio autoplay restricted:", e);
+                console.log("Audio playback prevented:", e);
             });
         }
 
@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startContinuousElements();
         startSlideshow();
     };
+
 
 
     giftBox.addEventListener('click', triggerSurprise);
