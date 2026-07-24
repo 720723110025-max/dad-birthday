@@ -5,7 +5,7 @@ function openGift() {
     const music = document.getElementById('bg-music');
 
     if (music) {
-        music.play().catch(error => console.log("Audio autoplay restricted by browser:", error));
+        music.play().catch(error => console.log("Audio autoplay restricted:", error));
     }
 
     overlay.style.opacity = '0';
@@ -16,7 +16,7 @@ function openGift() {
     }, 800);
 }
 
-// Automatic Slideshow Logic
+// Automatic Slideshow Logic for 2 Photos
 let slideIndex = 0;
 function startSlideshow() {
     let slides = document.getElementsByClassName("slide");
@@ -33,12 +33,12 @@ function startSlideshow() {
     setTimeout(startSlideshow, 3500); // Change image every 3.5 seconds
 }
 
-// Virtual Cake Cutting Action
+// Virtual Cake Cutting Action in Tamil
 function cutCake() {
     const cake = document.getElementById('cake');
     const message = document.getElementById('cake-message');
     
     cake.innerHTML = "🎉 🥳 🍰";
-    message.innerHTML = "Happy Birthday to the Best Dad!";
+    message.innerHTML = "அப்பாவிற்கு இனிய பிறந்தநாள் நல்வாழ்த்துகள்!";
     message.style.color = "#bf953f";
 }
