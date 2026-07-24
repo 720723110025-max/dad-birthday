@@ -1,7 +1,12 @@
-// Open Gift and Reveal Website
+// Open Gift and Reveal Website + Play Music
 function openGift() {
     const overlay = document.getElementById('gift-overlay');
     const mainContainer = document.querySelector('.main-container');
+    const music = document.getElementById('bg-music');
+
+    if (music) {
+        music.play().catch(error => console.log("Audio autoplay restricted by browser:", error));
+    }
 
     overlay.style.opacity = '0';
     setTimeout(() => {
