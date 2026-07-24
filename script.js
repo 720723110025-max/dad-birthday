@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const giftBox = document.getElementById('giftBox');
     const openGiftBtn = document.getElementById('openGiftBtn');
     
-    const bgMusic = document.getElementById('bgMusic');
     const popSound = document.getElementById('popSound');
     const cheerSound = document.getElementById('cheerSound');
     
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const replayBtn = document.getElementById('replayBtn');
     const whatsappBtn = document.getElementById('whatsappBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
 
     let progress = 0;
@@ -65,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const triggerSurprise = () => {
-        bgMusic.play().catch(e => {});
         cheerSound.play().catch(e => {});
 
         introScreen.classList.remove('active');
@@ -217,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const shareText = encodeURIComponent("🎉 இனிய பிறந்தநாள் வாழ்த்துக்கள் அப்பா ❤️ Check out this special surprise!");
         window.open(`https://api.whatsapp.com/send?text=${shareText}`, '_blank');
     });
-    downloadBtn.addEventListener('click', () => alert("📥 Memory saved successfully! Take a screenshot to keep this moment forever."));
     fullscreenBtn.addEventListener('click', () => {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen().catch(err => {});
@@ -226,4 +222,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-                    
+                                               
