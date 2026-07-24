@@ -62,7 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const triggerSurprise = () => {
+        const triggerSurprise = () => {
+        // Play background music when surprise is triggered
+        const bgMusic = document.getElementById('bgMusic');
+        if (bgMusic) {
+            bgMusic.play().catch(e => {
+                console.log("Audio autoplay restricted:", e);
+            });
+        }
+
         cheerSound.play().catch(e => {});
 
         introScreen.classList.remove('active');
@@ -74,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startContinuousElements();
         startSlideshow();
     };
+
 
     giftBox.addEventListener('click', triggerSurprise);
     openGiftBtn.addEventListener('click', triggerSurprise);
