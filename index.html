@@ -3,10 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0a0a0a">
     <title>Happy Birthday Appa ❤️</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Poppins', sans-serif; overflow-x: hidden; min-height: 100vh; }
+        #loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.6s ease; }
+        .loader-content { text-align: center; }
+        .golden-spinner { width: 60px; height: 60px; border: 4px solid rgba(212, 175, 55, 0.2); border-top: 4px solid #ffd700; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .screen { position: absolute; top: 0; left: 0; width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 15px; opacity: 0; visibility: hidden; transition: opacity 0.8s ease; z-index: 5; }
+        .screen.active { opacity: 1; visibility: visible; position: relative; }
+        .hidden { display: none !important; }
+        .main-container { width: 100%; max-width: 600px; margin: 0 auto; padding: 10px; }
+        .glass-card { background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); margin-bottom: 20px; width: 100%; text-align: center; }
+        .gold-gradient-text { background: linear-gradient(135deg, #fff2b2, #ffd700, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Cinzel', serif; }
+        .gold-btn { background: linear-gradient(135deg, #d4af37, #aa771c); color: #050505; font-family: 'Cinzel', serif; font-weight: 700; padding: 12px 24px; border: 1px solid #fff2b2; border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); text-transform: uppercase; margin: 8px; font-size: 0.85rem; }
+        .typewriter-text { font-size: 1.5rem; line-height: 1.5; color: #fff2b2; font-family: 'Great Vibes', cursive; margin-bottom: 20px; }
+        .gift-box { width: 100px; height: 100px; background: linear-gradient(135deg, #ffd700, #aa771c); margin: 0 auto 20px auto; position: relative; border-radius: 10px; cursor: pointer; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5); }
+        .gift-box::before { content: ''; position: absolute; top: 0; left: 50%; width: 16px; height: 100%; background: #fff; transform: translateX(-50%); }
+        .gift-box::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 16px; background: #fff; transform: translateY(-50%); }
+        .gift-lid { position: absolute; top: -12px; left: -4px; width: 108px; height: 22px; background: linear-gradient(135deg, #fff2b2, #ffd700); border-radius: 4px; }
+        .golden-frame-container { width: 180px; height: 180px; margin: 0 auto 15px auto; border-radius: 50%; padding: 5px; background: linear-gradient(135deg, #ffd700, #aa771c, #fff2b2); box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+        .dad-main-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #050505; }
+        .tamil-message-content { font-size: 1.05rem; line-height: 1.8; text-align: center; color: #f1f1f1; }
+        .slideshow-container { position: relative; width: 100%; height: 280px; border-radius: 12px; overflow: hidden; border: 2px solid #d4af37; margin-bottom: 20px; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; overflow: hidden; }
+        .floating-item { position: absolute; bottom: -50px; animation: floatUp linear infinite; }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+    </style>
 </head>
 <body>
 
@@ -14,97 +42,119 @@
         <div class="loader-content">
             <div class="golden-spinner"></div>
             <h2>Loading Surprise...</h2>
-            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         </div>
     </div>
 
     <div class="floating-elements" id="floatingElements"></div>
 
     <main class="main-container">
-
+        <!-- Intro Screen -->
         <section id="introScreen" class="screen active">
-            <div class="glass-card intro-card">
-                <h1 class="typewriter-text" id="introTypewriter"></h1>
-                <div class="gift-box-container" id="giftBoxContainer" style="display: none;">
-                    <div class="gift-box" id="giftBox">
-                        <div class="gift-lid"><span></span></div>
-                        <div class="gift-body"><span></span></div>
-                    </div>
-                    <button class="gold-btn" id="openGiftBtn">🎁 திறக்க இங்கே தட்டுங்கள்</button>
+            <div class="glass-card">
+                <h1 class="typewriter-text">ஒரு சிறிய அன்பு பரிசு...<br>என் அன்பான அப்பாவிற்கு ❤️</h1>
+                <div class="gift-box" id="openGiftBtn">
+                    <div class="gift-lid"></div>
                 </div>
+                <button class="gold-btn" onclick="unlockSurprise()">🎁 திறக்க இங்கே தட்டுங்கள்</button>
             </div>
         </section>
 
+        <!-- Main Content Screen -->
         <section id="mainContent" class="screen hidden">
-            
-            <div class="section-box center-align">
+            <div class="glass-card">
                 <div class="golden-frame-container">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" alt="Beloved Appa" class="dad-main-photo">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" alt="Appa" class="dad-main-photo">
                 </div>
-                <h2 class="section-title gold-gradient-text">Happy Birthday Appa</h2>
+                <h2 class="gold-gradient-text" style="font-size: 1.8rem; margin-top: 10px;">Happy Birthday Appa</h2>
             </div>
 
-            <div class="glass-card message-card">
+            <div class="glass-card">
                 <div class="tamil-message-content">
                     🎉 இனிய பிறந்தநாள் வாழ்த்துக்கள் அப்பா ❤️<br><br>
-                    இந்த உலகத்தில் எனக்கு கிடைத்த மிகப்பெரிய வரம் நீங்கள்.<br><br>
-                    என் ஒவ்வொரு வெற்றிக்கும் பின்னால் இருக்கும் சக்தி நீங்கள்.<br><br>
+                    இந்த உலகத்தில் எனக்கு கிடைத்த மிகப்பெரிய வரம் நீங்கள்.<br>
+                    என் ஒவ்வொரு வெற்றிக்கும் பின்னால் இருக்கும் சக்தி நீங்கள்.<br>
                     என்னை நல்ல மனிதனாக உருவாக்கிய என் முதல் ஆசிரியர் நீங்கள்.<br><br>
-                    உங்கள் அன்பு... உங்கள் தியாகம்... உங்கள் உழைப்பு...<br><br>
+                    உங்கள் அன்பு... உங்கள் தியாகம்... உங்கள் உழைப்பு...<br>
                     இதற்கு நான் என்றும் நன்றிக்கடன் பட்டிருக்கிறேன்.<br><br>
                     இறைவன் உங்களுக்கு நல்ல ஆரோக்கியம், நீண்ட ஆயுள், அளவற்ற மகிழ்ச்சி என்றும் வழங்கட்டும்.<br><br>
                     ❤️ அன்புடன்<br>உங்கள் மகன்<br>Dineshkumar
                 </div>
             </div>
 
-            <div class="section-box">
-                <h3 class="subtitle gold-gradient-text">✨ Our Beautiful Memories ✨</h3>
-                <div class="slideshow-container glass-card">
-                    <div class="slide fade active"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500&auto=format&fit=crop&q=80" alt="Memory 1"></div>
-                    <div class="slide fade"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80" alt="Memory 2"></div>
-                    <div class="slide fade"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" alt="Memory 3"></div>
+            <div class="glass-card">
+                <h3 class="gold-gradient-text" style="margin-bottom: 12px; font-family: 'Cinzel', serif;">✨ Our Beautiful Memories ✨</h3>
+                <div class="slideshow-container">
+                    <div class="slide active"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500&auto=format&fit=crop&q=80" alt="1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80" alt="2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" alt="3"></div>
                 </div>
             </div>
 
-            <div class="section-box center-align">
-                <div class="glass-card cake-card">
-                    <h3 class="subtitle gold-gradient-text">🎂 Celebration Time</h3>
-                    <div class="cake-container" id="cakeContainer">
-                        <div class="cake">
-                            <div class="plate"></div>
-                            <div class="layer layer-bottom"></div>
-                            <div class="layer layer-middle"></div>
-                            <div class="layer layer-top"></div>
-                            <div class="icing"></div>
-                            <div class="candle" id="birthdayCandle">
-                                <div class="flame" id="candleFlame"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="cake-instruction" id="cakeInstruction">🕯️ மெழுகுவர்த்தியை அணைக்க தட்டுங்கள்</p>
-                    <div class="cake-wish hidden" id="cakeWish">🎉 இனிய பிறந்தநாள் வாழ்த்துக்கள் அப்பா ❤️</div>
-                </div>
+            <div class="glass-card">
+                <h2 class="gold-gradient-text">❤️ Love You Forever Appa ❤️</h2>
+                <p style="color: #fff2b2; margin: 8px 0; font-size: 0.95rem;">Always Proud To Be Your Son</p>
+                <h3 style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #ffd700; margin-bottom: 15px;">Dineshkumar</h3>
+                <button class="gold-btn" onclick="window.location.reload()">🔄 Replay</button>
+                <button class="gold-btn" onclick="shareWhatsApp()">💬 WhatsApp</button>
             </div>
-
-            <div class="glass-card final-card center-align">
-                <h2 class="glow-title">❤️ Love You Forever Appa ❤️</h2>
-                <p class="sub-dedication">Always Proud To Be Your Son</p>
-                <h3 class="signature-name">Dineshkumar</h3>
-                
-                <div class="action-buttons">
-                    <button class="gold-btn" id="replayBtn">🔄 Replay</button>
-                    <button class="gold-btn" id="whatsappBtn">💬 WhatsApp</button>
-                    <button class="gold-btn" id="fullscreenBtn">📺 Fullscreen</button>
-                </div>
-            </div>
-
         </section>
-
     </main>
 
-    <audio id="popSound" preload="auto"><source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg"></audio>
-    <audio id="cheerSound" preload="auto"><source src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3" type="audio/mpeg"></audio>
+    <script>
+        // Hide loader immediately once loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(() => document.getElementById('loading-screen').style.display = 'none', 500);
+            }, 500);
+        });
 
-    <script src="script.js"></script>
+        // Unlock surprise function directly attached
+        function unlockSurprise() {
+            document.getElementById('introScreen').classList.remove('active');
+            document.getElementById('introScreen').classList.add('hidden');
+            
+            const main = document.getElementById('mainContent');
+            main.classList.remove('hidden');
+            main.classList.add('active');
+
+            startBalloons();
+            startSlideshow();
+        }
+
+        // Slideshow logic
+        let currentSlide = 0;
+        function startSlideshow() {
+            const slides = document.querySelectorAll('.slide');
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 4000);
+        }
+
+        // Floating balloons & hearts animation
+        function startBalloons() {
+            const container = document.getElementById('floatingElements');
+            setInterval(() => {
+                const item = document.createElement('div');
+                item.className = 'floating-item';
+                item.innerHTML = Math.random() > 0.5 ? '🎈' : '❤️';
+                item.style.left = `${Math.random() * 90}vw`;
+                item.style.fontSize = `${Math.random() * 20 + 20}px`;
+                item.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                container.appendChild(item);
+                setTimeout(() => item.remove(), 10000);
+            }, 800);
+        }
+
+        // Connect gift box click as well
+        document.getElementById('openGiftBtn').addEventListener('click', unlockSurprise);
+
+        function shareWhatsApp() {
+            const text = encodeURIComponent("🎉 இனிய பிறந்தநாள் வாழ்த்துக்கள் அப்பா ❤️ Check out this special surprise!");
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+    </script>
 </body>
 </html>
