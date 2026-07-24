@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Dad</title>
+    <title>Happy Birthday Appa</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -13,8 +13,8 @@
     <div id="gift-overlay" class="gift-overlay">
         <div class="gift-content" onclick="openGift()">
             <div class="gift-box">🎁</div>
-            <h2>A Special Surprise For You, Dad</h2>
-            <p>Tap the gift to open</p>
+            <h2>அப்பாவிற்கு ஒரு சிறப்பானsurprise!</h2>
+            <p>திறக்க இதைத் தொடவும்</p>
         </div>
     </div>
 
@@ -22,41 +22,37 @@
     <div class="main-container">
         <!-- Header Section -->
         <header class="header">
-            <h1 class="glow-text">Happy Birthday, Dad</h1>
-            <p class="subtitle">The Pillar of Our Strength & Inspiration</p>
+            <h1 class="glow-text">இனிய பிறந்தநாள் வாழ்த்துகள் அப்பா!</h1>
+            பின்னணி இசை (Background Music)
         </header>
 
-        <!-- Memory Slideshow Section -->
+        <!-- Memory Slideshow Section (Only 2 Photos) -->
         <section class="card slideshow-card">
-            <h2>✨ Cherished Memories</h2>
+            <h2>✨ இனிய நினைவுகள்</h2>
             <div class="slideshow-container">
-                <!-- Using your actual uploaded files directly from root folder -->
-                <div class="slide fade"><img src="slide6.jpg" alt="Dad Memory"></div>
-                <div class="slide fade"><img src="slide7.jpg" alt="Dad Memory"></div>
-                <div class="slide fade"><img src="slide8.jpg" alt="Dad Memory"></div>
-                <div class="slide fade"><img src="slide9.jpg" alt="Dad Memory"></div>
-                <div class="slide fade"><img src="slide10.jpg" alt="Dad Memory"></div>
+                <div class="slide fade"><img src="photo1.jpg" alt="Appa Memory 1"></div>
+                <div class="slide fade"><img src="photo2.jpg" alt="Appa Memory 2"></div>
             </div>
         </section>
 
-        <!-- Background Music (Optional, plays birthday.mp3 if supported by browser) -->
+        <!-- Background Music -->
         <audio id="bg-music" loop>
             <source src="birthday.mp3" type="audio/mpeg">
         </audio>
 
         <!-- Virtual Cake Section -->
         <section class="card cake-card">
-            <h2>Celebrate & Cut the Cake</h2>
+            <h2>கேக் வெட்டும் திருவிழா</h2>
             <div class="cake-box" onclick="cutCake()">
                 <div id="cake" class="cake">🎂</div>
-                <p id="cake-message">Tap the cake to cut it!</p>
+                <p id="cake-message">கேக்கை வெட்ட இங்கே தொடவும்!</p>
             </div>
         </section>
 
-        <!-- Wishes Section -->
+        <!-- Tamil Wishes Section -->
         <section class="card wishes-card">
-            <h2>Heartfelt Wishes</h2>
-            <p class="wish-text">"Thank you for always guiding us, supporting us, and being our lifelong hero. Wishing you health, happiness, and peace always!"</p>
+            <h2>இதயப்பூர்வமான வாழ்த்துகள்</h2>
+            <p class="wish-text">"எგ்களுக்கெல்லாம் எல்லாவற்றையும் தாங்கி நின்று வழிகாட்டும் என் தெய்வமே! உங்களுக்கு இனிய பிறந்தநாள் வாழ்த்துகள் அப்பா. நீங்களும் உங்கள் அன்பு என்றும் நிரந்தரமாக வாழ வாழ்த்துகிறேன்!"</p>
         </section>
     </div>
 
